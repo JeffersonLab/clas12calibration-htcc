@@ -43,7 +43,7 @@ echo ""
 
 echo "RUNNING GROOVY SCRIPT..."
 echo "FILE TO USE = $RUN_DIR$SKIM_NUM"/"$HIPO "
-#$COATJAVA/bin/run-groovy htcc_Calib_Chnaged.groovy $RUN_DIR$SKIM_NUM"/"$HIPO
+$COATJAVA/bin/run-groovy htccCalib.groovy $RUN_DIR$SKIM_NUM"/"$HIPO
 echo "GROOVY SCRIPT DONE"
 echo ""
 
