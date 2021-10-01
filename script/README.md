@@ -23,5 +23,32 @@ Note: [RUN NUM] represents where the run number will go into the file name
 ```
 git clone https://github.com/JeffersonLab/clas12calibration-htcc.git
 ```
-
 2. Check that `script` has the following 3 files: `htccCalib.sh`, `HTCC_CalibEnviro.sh`, `htccCalib.groovy`
+3. Run `htccCalib.sh`
+```
+bash htccCalib_KeyWord.sh RUN_NUM=[] RUN_DIR=[] SKIM_NUM=[]
+```
+Currently there are 3 command line arguments the user must provide when running `htccCalib.sh`: 1. RUN_NUM,  2. RUN_DIR, and 3. SKIM_NUM
+Order does not matter as long as the key is used.
+*Example*:
+```
+bash htccCalib_KeyWord.sh RUN_NUM="003219" RUN_DIR="/volatile/clas12/rg-a/production/pass0/Spring18/v1_1.1.77/calib/train/" SKIM_NUM="skim6"
+```
+4. Upon successful completion of the script the outputs can be found in `$PWD/CalibRes/$RUN_NUM/$TODAY` 
+5. Submit the calibration constants (the .dat files in the outputs) for the relevant run range for the gain and timing
+*Gain*:
+```
+ccdb -c mysql://clas12writer:geom3try@clasdb/clas12 add /calibration/htcc/time -r [RUN RANGE] timePMT[RUN NUM].dat
+```
+*Timing*:
+```
+ccdb -c mysql://clas12writer:geom3try@clasdb/clas12 add /calibration/htcc/gain -r [RUN RANGE] npePMT[RUN NUM].dat
+```
+*Example*:
+```
+ccdb -c mysql://clas12writer:geom3try@clasdb/clas12 add /calibration/htcc/time -r 11093-11243 timePMT11158.dat
+ccdb -c mysql://clas12writer:geom3try@clasdb/clas12 add /calibration/htcc/gain -r 11093-11243 npePMT11158.dat
+```
+6. Check that calibration constants were successfully submitted to `ccdb` with the following links: 
+-[HTCC Gain](https://clasweb.jlab.org/cgi-bin/ccdb/versions?table=/calibration/htcc/gain)
+-[HTCC Time](https://clasweb.jlab.org/cgi-bin/ccdb/versions?table=/calibration/htcc/time)
