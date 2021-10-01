@@ -17,9 +17,11 @@
 
 Note: [RUN NUM] represents where the run number will go into the file name
 
-## Set up
+## Instructions
 
-Clone the repository:
+1. Clone the repository:
 ```
 git clone https://github.com/JeffersonLab/clas12calibration-htcc.git
 ```
+
+2. Check that `script` has the following 3 files: `htccCalib.sh`, `HTCC_CalibEnviro.sh`, `htccCalib.groovy`
