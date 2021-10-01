@@ -32,6 +32,7 @@ Currently there are 3 command line arguments the user must provide when running 
   - RUN_NUM
   - RUN_DIR
   - SKIM_NUM
+
 Order does not matter as long as the key is used.
 
 Note: [RUN RANGE] represents where a range of runs should be specified and [RUN NUM] represents where the run number will go into the file name
