@@ -2,11 +2,12 @@
 
 ## Scripts
 
-#### Included
-`htccCalib.sh`: shell script to run everything (environment and groovy)
-`HTCC_CalibEnviro.sh`: shell script to set up the environment 
-`htccCalib.groovy`: groovy file to compute calibration constants. 
-outputs:
+#### Included Files
+1. `htccCalib.sh`: shell script to run everything (environment and groovy)
+2. `HTCC_CalibEnviro.sh`: shell script to set up the environment 
+3. `htccCalib.groovy`: groovy file to compute calibration constants
+
+##### Outputs
 1. `npeAllC[RUN NUM].png`: plot over all 48 channels showing the gain
 2. `npePMT[RUN NUM].dat`: text file with gain constants (submit to ccdb)
 3. `nphePMT[RUN NUM].png`: gain of all 48 channels plotted individually
