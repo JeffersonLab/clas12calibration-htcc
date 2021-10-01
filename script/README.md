@@ -28,7 +28,10 @@ git clone https://github.com/JeffersonLab/clas12calibration-htcc.git
 ```
 bash htccCalib_KeyWord.sh RUN_NUM=[] RUN_DIR=[] SKIM_NUM=[]
 ```
-Currently there are 3 command line arguments the user must provide when running `htccCalib.sh`: 1. RUN_NUM,  2. RUN_DIR, and 3. SKIM_NUM
+Currently there are 3 command line arguments the user must provide when running `htccCalib.sh`: 
+  - RUN_NUM
+  - RUN_DIR
+  - SKIM_NUM
 Order does not matter as long as the key is used.
 
 Note: [RUN RANGE] represents where a range of runs should be specified and [RUN NUM] represents where the run number will go into the file name
