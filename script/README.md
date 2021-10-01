@@ -30,6 +30,8 @@ bash htccCalib_KeyWord.sh RUN_NUM=[] RUN_DIR=[] SKIM_NUM=[]
 ```
 Currently there are 3 command line arguments the user must provide when running `htccCalib.sh`: 1. RUN_NUM,  2. RUN_DIR, and 3. SKIM_NUM
 Order does not matter as long as the key is used.
+
+Note: [RUN RANGE] represents where a range of runs should be specified and [RUN NUM] represents where the run number will go into the file name
 *Example*:
 ```
 bash htccCalib_KeyWord.sh RUN_NUM="003219" RUN_DIR="/volatile/clas12/rg-a/production/pass0/Spring18/v1_1.1.77/calib/train/" SKIM_NUM="skim6"
@@ -50,5 +52,5 @@ ccdb -c mysql://clas12writer:geom3try@clasdb/clas12 add /calibration/htcc/time -
 ccdb -c mysql://clas12writer:geom3try@clasdb/clas12 add /calibration/htcc/gain -r 11093-11243 npePMT11158.dat
 ```
 6. Check that calibration constants were successfully submitted to `ccdb` with the following links: 
--[HTCC Gain](https://clasweb.jlab.org/cgi-bin/ccdb/versions?table=/calibration/htcc/gain)
--[HTCC Time](https://clasweb.jlab.org/cgi-bin/ccdb/versions?table=/calibration/htcc/time)
+  - [HTCC Gain](https://clasweb.jlab.org/cgi-bin/ccdb/versions?table=/calibration/htcc/gain)
+  - [HTCC Time](https://clasweb.jlab.org/cgi-bin/ccdb/versions?table=/calibration/htcc/time)
