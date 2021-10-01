@@ -32,12 +32,14 @@ Currently there are 3 command line arguments the user must provide when running 
 Order does not matter as long as the key is used.
 
 Note: [RUN RANGE] represents where a range of runs should be specified and [RUN NUM] represents where the run number will go into the file name
+
 *Example*:
 ```
 bash htccCalib_KeyWord.sh RUN_NUM="003219" RUN_DIR="/volatile/clas12/rg-a/production/pass0/Spring18/v1_1.1.77/calib/train/" SKIM_NUM="skim6"
 ```
 4. Upon successful completion of the script the outputs can be found in `$PWD/CalibRes/$RUN_NUM/$TODAY` 
 5. Submit the calibration constants (the .dat files in the outputs) for the relevant run range for the gain and timing
+
 *Gain*:
 ```
 ccdb -c mysql://clas12writer:geom3try@clasdb/clas12 add /calibration/htcc/time -r [RUN RANGE] timePMT[RUN NUM].dat
