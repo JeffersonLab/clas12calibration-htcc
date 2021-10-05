@@ -29,7 +29,7 @@ done
 echo "RUN_NUM = $RUN_NUM"
 echo "SKIM_NUM = $SKIM_NUM"
 echo "RUN_DIR = $RUN_DIR"
-HIPO=$SKIM_NUM"_"$RUN_NUM
+HIPO=$SKIM_NUM"_"$RUN_NUM".hipo"
 echo "HIPO FILE = $HIPO"
 echo ""
 
