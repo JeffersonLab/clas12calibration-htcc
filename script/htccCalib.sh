@@ -17,20 +17,17 @@ do
 
 	case "$KEY" in
 		RUN_NUM)	RUN_NUM=${VALUE} ;;
-		RUN_DIR)	RUN_DIR=${VALUE} ;;
+		FILE_PATH)	FILE_PATH=${VALUE} ;;
 		SKIM_NUM)	SKIM_NUM=${VALUE} ;;
 	esac
 done
 
-#3 command line arguments
+#2 command line arguments
 #RUN_NUM = number of run
-#SKIM_NUM = skim of run, check dir name for skim
-#RUN_DIR = dir of run
+#FILE_PATH = file path of skim6 run hipo
+#USE SKIM6 FOR HTCC
 echo "RUN_NUM = $RUN_NUM"
-echo "SKIM_NUM = $SKIM_NUM"
-echo "RUN_DIR = $RUN_DIR"
-HIPO=$SKIM_NUM"_"$RUN_NUM".hipo"
-echo "HIPO FILE = $HIPO"
+echo "FILE_PATH = $FILE_PATH"
 echo ""
 
 echo "CREATING DIR FOR CALIBRATION RESULTS..."
@@ -42,17 +39,15 @@ echo "DIRECTORIES CREATED"
 echo ""
 
 echo "RUNNING GROOVY SCRIPT..."
-echo "FILE TO USE = $RUN_DIR$SKIM_NUM"/"$HIPO "
-$COATJAVA/bin/run-groovy htccCalib.groovy $RUN_DIR$SKIM_NUM"/"$HIPO
+echo "FILE TO USE = $FILE_PATH "
+$COATJAVA/bin/run-groovy htccCalib.groovy $FILE_PATH
 echo "GROOVY SCRIPT DONE"
 echo ""
 
 echo "MOVING RESULTS TO APPROPRIATE DIR..."
 # get run number without the leading zeroes
-RUN_NUM_No0=$(echo $RUN_NUM | sed 's/^0*//')
-#echo "$RUN_NUM_No0"
-mv $PWD/*$RUN_NUM_No0.png $PWD/CalibRes/$RUN_NUM/$TODAY
-mv $PWD/*$RUN_NUM_No0.dat $PWD/CalibRes/$RUN_NUM/$TODAY
+mv $PWD/*.png $PWD/CalibRes/$RUN_NUM/$TODAY
+mv $PWD/*.dat $PWD/CalibRes/$RUN_NUM/$TODAY
 echo "FILES MOVED TO $PWD/CalibRes/$RUN_NUM/$TODAY"
 echo ""
 
