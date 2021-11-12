@@ -34,8 +34,6 @@ Currently there are 2 command line arguments the user must provide when running 
 
 Order does not matter as long as the key is used. 
 
-**As of Fall 2021: the usual HTCC skim is skim6.**
-
 *Note: [RUN RANGE] represents where a range of runs should be specified and [RUN NUM] represents where the run number will go into the file name*
 
 **Example**:
