@@ -18,14 +18,12 @@ do
 	case "$KEY" in
 		RUN_NUM)	RUN_NUM=${VALUE} ;;
 		FILE_PATH)	FILE_PATH=${VALUE} ;;
-		SKIM_NUM)	SKIM_NUM=${VALUE} ;;
 	esac
 done
 
 #2 command line arguments
 #RUN_NUM = number of run
-#FILE_PATH = file path of skim6 run hipo
-#USE SKIM6 FOR HTCC
+#FILE_PATH = file path of HTCC skim of run hipo file
 echo "RUN_NUM = $RUN_NUM"
 echo "FILE_PATH = $FILE_PATH"
 echo ""
