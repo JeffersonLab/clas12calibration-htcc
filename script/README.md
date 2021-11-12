@@ -26,13 +26,11 @@ git clone https://github.com/JeffersonLab/clas12calibration-htcc.git
 2. Check that `script` has the following 3 files: `htccCalib.sh`, `HTCC_CalibEnviro.sh`, `htccCalib.groovy`
 3. Run `htccCalib.sh`
 ```
-bash htccCalib.sh RUN_NUM=[] RUN_DIR=[] SKIM_NUM=[]
+bash htccCalib.sh RUN_NUM=[] FILE_PATH=[]
 ```
 Currently there are 2 command line arguments the user must provide when running `htccCalib.sh`: 
   - RUN_NUM
   - FILE_PATH
-  - ~~RUN_DIR~~
-  - ~~SKIM_NUM~~
 
 Order does not matter as long as the key is used. 
 
