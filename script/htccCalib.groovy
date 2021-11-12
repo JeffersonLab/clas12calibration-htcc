@@ -191,8 +191,8 @@ public void plot(runNumber){
        timeAllC.cd(0);
        timeAllC.draw(timeAll);
 
-       F1D timeAllFit = new F1D("timeAllFit", "[amp]*gaus(x,[mean],[sigma])",  -5, 5);
-       timeAllFit.setRange(-5, 5);
+       F1D timeAllFit = new F1D("timeAllFit", "[amp]*gaus(x,[mean],[sigma])",  -1, 1);
+       timeAllFit.setRange(-1, 1);
        timeAllFit.setParameter(0, 20000);
        timeAllFit.setParameter(1, 0);
        timeAllFit.setParameter(2, 1);
