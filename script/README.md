@@ -28,10 +28,11 @@ git clone https://github.com/JeffersonLab/clas12calibration-htcc.git
 ```
 bash htccCalib.sh RUN_NUM=[] RUN_DIR=[] SKIM_NUM=[]
 ```
-Currently there are 3 command line arguments the user must provide when running `htccCalib.sh`: 
+Currently there are 2 command line arguments the user must provide when running `htccCalib.sh`: 
   - RUN_NUM
-  - RUN_DIR
-  - SKIM_NUM
+  - FILE_PATH
+  - ~~RUN_DIR~~
+  - ~~SKIM_NUM~~
 
 Order does not matter as long as the key is used. 
 
@@ -41,7 +42,7 @@ Order does not matter as long as the key is used.
 
 **Example**:
 ```
-bash htccCalib.sh RUN_NUM="003219" RUN_DIR="/volatile/clas12/rg-a/production/pass0/Spring18/v1_1.1.77/calib/train/" SKIM_NUM="skim6"
+bash htccCalib.sh RUN_NUM=003219 FILE_PATH=/volatile/clas12/rg-a/production/pass0/Spring18/v1_1.1.77/calib/train/
 ```
 4. Upon successful completion of the script the outputs can be found in `$PWD/CalibRes/$RUN_NUM/$TODAY` 
 5. Submit the calibration constants (the .dat files in the outputs) for the relevant run range for the gain and timing
