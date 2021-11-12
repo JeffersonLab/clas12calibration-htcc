@@ -40,7 +40,7 @@ Order does not matter as long as the key is used.
 
 **Example**:
 ```
-bash htccCalib.sh RUN_NUM=003219 FILE_PATH=/volatile/clas12/rg-a/production/pass0/Spring18/v1_1.1.77/calib/train/
+bash htccCalib.sh RUN_NUM=004143 FILE_PATH=/lustre19/expphy/volatile/clas12/rg-a/production/pass0/Spring18/v1_1.1.86/calib/train/skim6/skim6_004143.hipo
 ```
 4. Upon successful completion of the script the outputs can be found in `$PWD/CalibRes/$RUN_NUM/$TODAY` 
 5. Submit the calibration constants (the .dat files in the outputs) for the relevant run range for the gain and timing
