@@ -38,7 +38,7 @@ echo ""
 
 echo "RUNNING GROOVY SCRIPT..."
 echo "FILE TO USE = $FILE_PATH "
-$COATJAVA/bin/run-groovy htccCalib.groovy $FILE_PATH
+$COATJAVA/bin/run-groovy $PWD"/"htccCalib.groovy $FILE_PATH
 echo "GROOVY SCRIPT DONE"
 echo ""
 
