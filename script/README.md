@@ -6,6 +6,7 @@
 1. `htccCalib.sh`: shell script to run everything (environment and groovy)
 2. `HTCC_CalibEnviro.sh`: shell script to set up the environment 
 3. `htccCalib.groovy`: groovy file to compute calibration constants
+4. `GenTrigVals.py`: python script to compute values for adcctof1_gain.cnf trigger file
 
 ##### Outputs
 1. `npeAllC[RUN NUM].png`: plot over all 48 channels showing the gain
@@ -14,6 +15,7 @@
 4. `timeAllC[RUN NUM].png`: timing of all 80 channels with a gaussian fit
 5. `timePMT[RUN NUM].dat`: text file with timing constants (submit to ccdb)
 6. `timePMT[RUN NUM].png`: timing of all 48 channels plotted individually 
+7. `adcctof1_gain[RUN NUM].txt`: values for trigger file
 
 *Note: [RUN NUM] represents where the run number will go into the file name*
 
@@ -59,3 +61,8 @@ ccdb -c mysql://clas12writer:geom3try@clasdb/clas12 add /calibration/htcc/time -
 6. Check that calibration constants were successfully submitted to `ccdb` with the following links: 
   - [HTCC Gain](https://clasweb.jlab.org/cgi-bin/ccdb/versions?table=/calibration/htcc/gain)
   - [HTCC Time](https://clasweb.jlab.org/cgi-bin/ccdb/versions?table=/calibration/htcc/time)
+
+7. To run the python script you should use Python 3. Try using the command `module switch python/3.9.5` (if python module is already loaded) to get the python version this script was writtin with. Run this script with the npePMT dat file to generate trigger values. It takes one command line input: the file path of the npePMT dat file. 
+```
+python3 GenTrigVals.py /w/hallb-scifs17exp/clas12/izzy/HTCCcalib/clas12calibration-htcc/script/CalibRes/015045/13-Nov-2021/npePMT15045.dat
+```
