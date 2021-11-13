@@ -15,7 +15,7 @@
 4. `timeAllC[RUN NUM].png`: timing of all 80 channels with a gaussian fit
 5. `timePMT[RUN NUM].dat`: text file with timing constants (submit to ccdb)
 6. `timePMT[RUN NUM].png`: timing of all 48 channels plotted individually 
-7. `adcctof1_gain[RUN NUM].txt`: values for trigger file
+7. `adcctof1_gain_Run[RUN NUM].txt`: values for trigger file
 
 *Note: [RUN NUM] represents where the run number will go into the file name*
 
