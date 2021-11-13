@@ -62,7 +62,7 @@ ccdb -c mysql://clas12writer:geom3try@clasdb/clas12 add /calibration/htcc/time -
   - [HTCC Gain](https://clasweb.jlab.org/cgi-bin/ccdb/versions?table=/calibration/htcc/gain)
   - [HTCC Time](https://clasweb.jlab.org/cgi-bin/ccdb/versions?table=/calibration/htcc/time)
 
-7. To run the python script you should use Python 3. Try using the command `module switch python/3.9.5` (if python module is already loaded) to get the python version this script was writtin with. Run this script with the npePMT dat file to generate trigger values. It takes one command line input: the file path of the npePMT dat file. 
+7. Run python script to get trigger values. Use Python 3. Try command `module load python/3.9.5` or `module switch python/3.9.5` if a python module is already loaded. Run this script with the npePMT dat file generated via calibrations scripts in order to generate trigger values. It takes one command line input: file path of npePMT dat 
 ```
 python3 GenTrigVals.py /w/hallb-scifs17exp/clas12/izzy/HTCCcalib/clas12calibration-htcc/script/CalibRes/015045/13-Nov-2021/npePMT15045.dat
 ```
