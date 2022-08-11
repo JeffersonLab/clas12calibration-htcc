@@ -42,7 +42,8 @@ public class Inclusive {
 	public int runNumber;
 	int ring, sector, hs;	
 	List<H1F> hiNphePMTOneHit = new ArrayList();
-        List<H1F> hiTimePMTOneHit = new ArrayList();
+        List<H1F> hiNphePMTOneHit_ZOOM = new ArrayList();
+	List<H1F> hiTimePMTOneHit = new ArrayList();
 	H1F timeAll;
 	H1F npeAll;
 	static int nBinsTime = 4000;
@@ -51,15 +52,22 @@ public class Inclusive {
 
 	public Inclusive(){
 	for (int t = 0; t < 48; t++) {
-	    hiNphePMTOneHit.add(new H1F("hiNphePMTOneHit" + t, 80, 0.5, 40.5));
-	    ring = (int) (t/12) + 1;
+	    hiNphePMTOneHit.add(new H1F("hiNphePMTOneHit" + t, 80, 0.5, 100.5));
+	    hiNphePMTOneHit_ZOOM.add(new H1F("hiNphePMTOneHitZOOM" + t, 80, 0.5, 40.5));
+            ring = (int) (t/12) + 1;
 	    hs = (int) (t%2) + 1;
 	    sector = (int)(t%12)/2 + 1;
    	    hiNphePMTOneHit.get(t).setTitle("S"  + sector + " HS " + hs + " R " + ring);
             hiNphePMTOneHit.get(t).setTitle("S"  + sector + " HS " + hs + " R " + ring);
 	    hiNphePMTOneHit.get(t).setOptStat(110);
 	    hiNphePMTOneHit.get(t).setOptStat(110);
-	    hiTimePMTOneHit.add(new H1F("hiTimePMTOneHit" + t, nBinsTime, lowTime, highTime));
+	    
+            hiNphePMTOneHit_ZOOM.get(t).setTitle("S"  + sector + " HS " + hs + " R " + ring);
+            hiNphePMTOneHit_ZOOM.get(t).setTitle("S"  + sector + " HS " + hs + " R " + ring);
+            hiNphePMTOneHit_ZOOM.get(t).setOptStat(110);
+            hiNphePMTOneHit_ZOOM.get(t).setOptStat(110);            
+
+            hiTimePMTOneHit.add(new H1F("hiTimePMTOneHit" + t, nBinsTime, lowTime, highTime));
             ring = (int) (t/12) + 1;
             hs = (int) (t%2) + 1;
 	    sector = (int)(t%12)/2 + 1;
@@ -153,7 +161,7 @@ public void plot(runNumber){
         timeIndPMT.get(t).setOptStat(1101);
 	}
 
-       EmbeddedCanvas oneHitHTCCOnly = new EmbeddedCanvas();
+	EmbeddedCanvas oneHitHTCCOnly = new EmbeddedCanvas();
         oneHitHTCCOnly.setSize(2400,600);
 	oneHitHTCCOnly.divide(12,4);
 
@@ -161,10 +169,24 @@ public void plot(runNumber){
 	oneHitHTCCOnly.setAxisFontSize(14);
 	oneHitHTCCOnly.setTitleSize(14);
         for (int t = 0; t < 48; t++){
-                oneHitHTCCOnly.cd(t);oneHitHTCCOnly.draw(hiNphePMTOneHit.get(t));
+                oneHitHTCCOnly.cd(t);
+		oneHitHTCCOnly.draw(hiNphePMTOneHit.get(t));
 		}
         oneHitHTCCOnly.save("nphePMT" + runNumber + ".png");
 
+	EmbeddedCanvas oneHitHTCCOnly_ZOOM = new EmbeddedCanvas();
+        oneHitHTCCOnly_ZOOM.setSize(2400,600);
+        oneHitHTCCOnly_ZOOM.divide(12,4);
+
+        oneHitHTCCOnly_ZOOM.setAxisTitleSize(14);
+        oneHitHTCCOnly_ZOOM.setAxisFontSize(14);
+        oneHitHTCCOnly_ZOOM.setTitleSize(14);
+        for (int t = 0; t < 48; t++){
+                oneHitHTCCOnly_ZOOM.cd(t);
+                oneHitHTCCOnly_ZOOM.draw(hiNphePMTOneHit_ZOOM.get(t));
+                }
+        oneHitHTCCOnly_ZOOM.save("nphePMT_ZOOM_" + runNumber + ".png");
+	
 	for (int t = 0; t < 48; t++){
                 oneHitHTCCOnly.cd(t);oneHitHTCCOnly.draw(hiTimePMTOneHit.get(t));
 		timeIndPMT.get(t).setParameter(0, hiTimePMTOneHit.get(t).getMax());
@@ -349,7 +371,8 @@ public void processEvent(DataEvent event
                                                         ring = returnRing(thetaHTCC);
                                                         pmt = returnPMT(ring, halfSector);
            						hiNphePMTOneHit.get(pmt - 1).fill(nphe);
-					                hiTimePMTOneHit.get(pmt - 1).fill(deltaTimeCC);
+					                hiNphePMTOneHit_ZOOM.get(pmt - 1).fill(nphe);
+							hiTimePMTOneHit.get(pmt - 1).fill(deltaTimeCC);
 							timeAll.fill(deltaTimeCC);
 						}
                                         }
@@ -376,7 +399,3 @@ while(reader.hasEvent()){
 //	if(count%1000000 == 0) break;
 }
 Inclusive_ana.plot(Inclusive_ana.runNumber);
-
-
-
-
