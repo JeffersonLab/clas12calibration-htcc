@@ -38,6 +38,10 @@ flatListNPE = [float(x) for x in flatListNPE]
 print()
 print("Generating trigger values for fadc file...")
 
+from math import log10 , floor
+def round_it(x, sig):
+    return round(x, sig-int(floor(log10(abs(x))))-1)
+
 sec = []
 lay = []
 ring = []
@@ -53,7 +57,13 @@ for i in range(0, len(flatListNPE)):
     elif i%4 == 3:
         gain.append( round(flatListNPE[i],4) )
         nphe = flatListNPE[i]
-        trig.append( round((0.1*nphe)**(-1),3) )
+        #trig.append( "%.5g" % (0.1*nphe)**(-1) )
+        trig.append( round_it((0.1*nphe)**(-1),3) )
+
+#print(sec)
+#print(lay)
+#print(ring)
+#print(gain)
 
 slot_13 = []
 slot_14 = []
