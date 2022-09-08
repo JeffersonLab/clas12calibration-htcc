@@ -2,7 +2,7 @@
 Package to obtain the HTCC gain and timing calibration parameters for a given run.
 
 ## Script
-Script files that can be used to run HTCC calibrations on ifarm.
+Script files that can be used to run HTCC calibrations on ifarm. Currently supported and being updated.
 
 ## Suite
 Collaboration Suite that can be used to run calibrations via GUI. Currently not being updated.
