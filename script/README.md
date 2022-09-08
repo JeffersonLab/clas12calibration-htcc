@@ -66,3 +66,16 @@ ccdb -c mysql://clas12writer:geom3try@clasdb/clas12 add /calibration/htcc/time -
 ```
 python3 GenTrigVals.py /w/hallb-scifs17exp/clas12/izzy/HTCCcalib/clas12calibration-htcc/script/CalibRes/015045/13-Nov-2021/npePMT15045.dat
 ```
+
+8. Run bash and python script to get comparison between a run's output dat file for time or gain vs the constants currently uploaded in CCDB. The bash script `compareRunCCDB.sh` runs the python script `compareRunCCDB.py`. The bash script takes 3 key-value arguments (can be input in any order):
+```
+./compareRunCCDB.sh RUN_NUM=[] PARAMETER=[] FILE_PATH=[]
+```
+Example:
+```
+./compareRunCCDB.sh RUN_NUM=016702 PARAMETER=time FILE_PATH=/work/clas12/izzy/HTCCcalib/clas12calibration-htcc/script/CalibRes/016702/08-Sep-2022/timePMT16702.dat
+```
+And there are 3 outputs: 
+  - ccdb_time_run[number].dat: dat file with ccdb info
+  - compareRun[number]CCDB.dat: csv file with percent change comparison between run and ccdb values
+  - compareRun[number]CCDB_HTML.txt: same info as above but formatted in html so that it can be easily c&p into logbook entry
