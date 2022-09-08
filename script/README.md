@@ -7,6 +7,8 @@
 2. `HTCC_CalibEnviro.sh`: shell script to set up the environment 
 3. `htccCalib.groovy`: groovy file to compute calibration constants
 4. `GenTrigVals.py`: python script to compute values for adcctof1_gain.cnf trigger file
+5. `compareRunCCDB.sh`: bash script that gets ccdb values for a specific run and then calls a python script
+6. `compareRunCCDB.py`: python script that compares the output of a specific run to the current ccdb values of that run
 
 ##### Outputs
 1. `npeAllC[RUN NUM].png`: plot over all 48 channels showing the gain
@@ -16,6 +18,9 @@
 5. `timePMT[RUN NUM].dat`: text file with timing constants (submit to ccdb)
 6. `timePMT[RUN NUM].png`: timing of all 48 channels plotted individually 
 7. `adcctof1_gain_Run[RUN NUM].txt`: values for trigger file
+8. `ccdb_time_run[RUN NUM].dat`: dat file with ccdb info
+9. `compareRun[RUN NUM]CCDB.dat`: csv file with percent change comparison between run and ccdb values
+10. `compareRun[RUN NUM]CCDB_HTML.txt`: same info as above but formatted in html so that it can be easily c&p into logbook entry
 
 *Note: [RUN NUM] represents where the run number will go into the file name*
 
