@@ -84,3 +84,9 @@ And there are 3 outputs:
   - ccdb_time_run[number].dat: dat file with ccdb info
   - compareRun[number]CCDB.dat: csv file with percent change comparison between run and ccdb values
   - compareRun[number]CCDB_HTML.txt: same info as above but formatted in html so that it can be easily c&p into logbook entry
+
+9. If you'd like to check the change history for a parameter for a run range you can use `ccdb-ranges.py` from https://github.com/JeffersonLab/clas12-utilities/blob/master/bin/ccdb-ranges.py 
+Example:
+```
+ccdb-ranges.py -min 6608 -max 6783 -table /calibration/htcc/time -dump
+```
