@@ -52,7 +52,7 @@ public class Inclusive {
 
 	public Inclusive(){
 	for (int t = 0; t < 48; t++) {
-	    hiNphePMTOneHit.add(new H1F("hiNphePMTOneHit" + t, 80, 0.5, 100.5));
+	    hiNphePMTOneHit.add(new H1F("hiNphePMTOneHit" + t, 800, 0.5, 200.5));
 	    hiNphePMTOneHit_ZOOM.add(new H1F("hiNphePMTOneHitZOOM" + t, 80, 0.5, 40.5));
             ring = (int) (t/12) + 1;
 	    hs = (int) (t%2) + 1;
@@ -361,12 +361,16 @@ public void processEvent(DataEvent event
                                 for (int j = 0; j < recDeteHTCC.rows(); j++) {
                                         if (recDeteHTCC.getShort("pindex", j) == loopE && recDeteHTCC.getByte("detector", j) == 15) {
 						float nphe = recDeteHTCC.getFloat("nphe", j);
-                                                float thetaHTCC =  Math.toDegrees(recHTCC.getFloat("theta", recDeteHTCC.getInt("pindex", j)));
-                                                float phiHTCC = Math.toDegrees(recHTCC.getFloat("phi", recDeteHTCC.getInt("pindex", j)));
+                                                //change pindex to index
+                                                float thetaHTCC =  Math.toDegrees(recHTCC.getFloat("theta", recDeteHTCC.getInt("index", j)));
+                                                float phiHTCC = Math.toDegrees(recHTCC.getFloat("phi", recDeteHTCC.getInt("index", j)));
 						float timeCC = recDeteHTCC.getFloat("time", j);
+                                                float path = recDeteHTCC.getFloat("path", j); //cm
+                                                double c = 29.98; //cm per ns
 						npeAll.fill(nphe);
                                                 if (returnNHits(thetaHTCC, phiHTCC) == 1){
-						        double deltaTimeCC = timeCC - startTime;
+						        //double deltaTimeCC = timeCC - startTime;
+                                                        double deltaTimeCC = timeCC - (path/c) - startTime;
                                                         halfSector = returnHalfSector(phiHTCC);
                                                         ring = returnRing(thetaHTCC);
                                                         pmt = returnPMT(ring, halfSector);
@@ -399,3 +403,7 @@ while(reader.hasEvent()){
 //	if(count%1000000 == 0) break;
 }
 Inclusive_ana.plot(Inclusive_ana.runNumber);
+
+
+
+
