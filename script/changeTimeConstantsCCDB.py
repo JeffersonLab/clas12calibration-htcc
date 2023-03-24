@@ -73,6 +73,8 @@ df_compare["S"] = df_ccdb["S"]
 df_compare["HS"] = df_ccdb["HS"]
 df_compare["R"] = df_ccdb["R"]
 
+#-----TIME SHIFT PARAMETER-----#
+#see example for how these were calculated over at this entry https://logbooks.jlab.org/entry/4049486
 timeShift = -5.921569
 #timeShift = -5.905573636363638
 df_compare["time"] = df_ccdb["time"] + timeShift
