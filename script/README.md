@@ -9,6 +9,8 @@
 4. `GenTrigVals.py`: python script to compute values for adcctof1_gain.cnf trigger file
 5. `compareRunCCDB.sh`: bash script that gets ccdb values for a specific run and then calls a python script
 6. `compareRunCCDB.py`: python script that compares the output of a specific run to the current ccdb values of that run
+7. `changeTimeConstantsCCDB.sh`: bash script that changes time constants in ccdb based on some values
+8. `changeTimeConstantsCCDB.py`: python scripts that includes the time shift values and produces new time constants based on said value
 
 ##### Outputs
 1. `npeAllC[RUN NUM].png`: plot over all 48 channels showing the gain
@@ -89,4 +91,8 @@ And there are 3 outputs:
 Example:
 ```
 ccdb-ranges.py -min 6608 -max 6783 -table /calibration/htcc/time -dump
+```
+10. If you'd like to adjust the time constants in ccdb by a simple addition of a constants you can use `changeTimeConstantsCCDB.sh` and `changeTimeConstantsCCDB.py`. You will need to change the `timeShift` value in the python script to whatever value you need. Currently the bash script is must be hardcoded for the run ranges in the script itself so you need to edit the arrays `MIN_RUNS` and `MAX_RUNS`. The bash script will call the python script itself and commit the changes to ccdb. To run these is fairly straight forward (after the appropriate changes have been made):
+```
+./changeTimeConstantsCCDB.sh
 ```
