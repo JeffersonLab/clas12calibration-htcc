@@ -27,6 +27,7 @@
 *Note: [RUN NUM] represents where the run number will go into the file name*
 
 ## Instructions
+(These instruction assume that you are running scripts in this directory)
 
 1. Clone the repository:
 ```
