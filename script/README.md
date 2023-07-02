@@ -1,16 +1,37 @@
 # HTCC Calibration Package
 
+- [Access Permissions](#access-permissions)
 - [Scripts](#scripts)
   - [Included Files](#included-files)
   - [Outputs](#outputs)
 - [Instructions](#instructions)
 - [Trigger Values](#trigger-values)
-- [Comparisons](#comparisons)
-  - [Comparing New Calibration Constants to old CCDB Values: CSV format](#csv-comparing-new-values-to-ccdb-values)
-  - [Comparing New Calibration Constants to old CCDB Values: Plots](#python-script-to-generate-plots-comparing-gain-and-time-constants)
+- [Comparing New Calibration Constants to old CCDB Values](#comparisons)
+  - [CSV format](#csv-comparing-new-values-to-ccdb-values)
+  - [Plots](#python-script-to-generate-plots-comparing-gain-and-time-constants)
 - [CCDB Value Update History](#ccdb-value-update-history)
 - [Adjust CCDB Time Values by a Constant](#adjust-ccdb-time-values-by-a-constant)
+- [Hardware Status Tables](#hardware-status-tables)
 
+---
+
+## Access Permissions
+
+Certain actions and access to specific resources during the calibration process may require special permissions. Here's how you can acquire them:
+
+### CCDB Access
+
+To gain access to the CCDB, please contact Nathan Baltzell at [baltzell@jlab.org](mailto:baltzell@jlab.org).
+
+### Trigger File Access
+
+To access or modify the trigger file, you will need to be added to the `clon_cluster` group and have a home directory created on clon machines. To facilitate this, please contact Serguei Boiarinov at [boiarino@jlab.org](mailto:boiarino@jlab.org).
+
+### CLAS Group Access
+
+Depending on the files you need to modify, you might need to be added to the `clas` group. To request this, please contact Harut Avakian at [avakian@jlab.org](mailto:avakian@jlab.org).
+
+#### Remember, obtaining these permissions might take some time, so plan accordingly.
 ---
 
 ## Scripts
@@ -93,8 +114,8 @@ ccdb -c mysql://clas12writer:geom3try@clasdb/clas12 add /calibration/htcc/gain -
 ccdb -c mysql://clas12writer:geom3try@clasdb/clas12 add /calibration/htcc/time -r 11093-11243 timePMT11158.dat
 ```
 6. Check that calibration constants were successfully submitted to `ccdb` with the following links: 
-  - [HTCC Gain](https://clasweb.jlab.org/cgi-bin/ccdb/versions?table=/calibration/htcc/gain)
-  - [HTCC Time](https://clasweb.jlab.org/cgi-bin/ccdb/versions?table=/calibration/htcc/time)
+  - HTCC Gain: [https://clasweb.jlab.org/cgi-bin/ccdb/versions?table=/calibration/htcc/gain](https://clasweb.jlab.org/cgi-bin/ccdb/versions?table=/calibration/htcc/gain)
+  - HTCC Time: [https://clasweb.jlab.org/cgi-bin/ccdb/versions?table=/calibration/htcc/time](https://clasweb.jlab.org/cgi-bin/ccdb/versions?table=/calibration/htcc/time)
 
 ---
 
@@ -166,3 +187,22 @@ ccdb-ranges.py -min 6608 -max 6783 -table /calibration/htcc/time -dump
 ```bash
 ./changeTimeConstantsCCDB.sh
 ```
+---
+Sure, here is a draft for the section about the hardware status tables in your markdown:
+
+---
+## Hardware Status Tables
+
+The Hardware Status Tables are crucial components of the calibration process. They define the status of different hardware components used in the data acquisition. For each component, a status value different from 0 indicates that the component did not operate normally. These tables play an important role in identifying and handling problematic or non-operational detector elements during the reconstruction process.
+
+In the case of HTCC, hardware status tables often do not need frequent updates unless there is a significant change in the operation of the detector components. For example, in the past, there were instances where some channels had no signal until the HV power supply was replaced. Such cases were deemed as not exactly "erratic behavior" that needed to be accounted for in the hardware status tables, and thus, no changes were made to the HTCC status.
+
+Here are some key resources related to the hardware status tables:
+
+- **Hardware Status Tables in CCDB**: The hardware status tables can be found in the CCDB: [[CCDB](https://clasweb.jlab.org/cgi-bin/ccdb/show_request?request=/calibration/htcc/status:0:default:2017-08-17_02-48-53)](https://clasweb.jlab.org/cgi-bin/ccdb/show_request?request=/calibration/htcc/status:0:default:2017-08-17_02-48-53). 
+
+- **Hardware Status Words Convention**: The convention for setting status values in the hardware status tables can be found in this PDF document: [[PDF document](https://clasweb.jlab.org/wiki/images/b/b9/Clas12-hardware-status-words.pdf)](https://clasweb.jlab.org/wiki/images/b/b9/Clas12-hardware-status-words.pdf).
+
+As per the process, if all channels are good, no action is needed. But if there are components that should be excluded from the reconstruction, a new entry should be made in the hardware status tables where their status is set according to the convention described above.
+
+Please be aware that changes to hardware status tables can create "holes" in the acceptance, and hence, usually, this is done only if the behavior of the detector element is so erratic that it would be too difficult to track the efficiency. Therefore, careful consideration and analysis are required before making any changes to these tables.
