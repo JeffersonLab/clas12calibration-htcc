@@ -1,6 +1,3 @@
-Of course, here's the revised version of your README.md in Markdown format:
-
-```markdown
 # HTCC Calibration Package
 
 ## Scripts
