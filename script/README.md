@@ -12,7 +12,34 @@
 7. `changeTimeConstantsCCDB.sh`: bash script that changes time constants in ccdb based on some values
 8. `changeTimeConstantsCCDB.py`: python scripts that includes the time shift values and produces new time constants based on said value
 
-##### Outputs
+# HTCC Calibration Package
+
+- [Scripts](#scripts)
+  - [Included Files](#included-files)
+  - [Outputs](#outputs)
+- [Instructions](#instructions)
+- [Trigger Values](#trigger-values)
+- [Comparison of New Values to CCDB Values](#comparison-of-new-values-to-ccdb-values)
+- [CCDB Value Update History](#ccdb-value-update-history)
+- [Adjust CCDB Time Values by a Constant](#adjust-ccdb-time-values-by-a-constant)
+
+---
+
+## Scripts
+
+### Included Files
+
+1. `htccCalib.sh`: shell script to run everything (environment and groovy)
+2. `HTCC_CalibEnviro.sh`: shell script to set up the environment 
+3. `htccCalib.groovy`: groovy file to compute calibration constants
+4. `GenTrigVals.py`: python script to compute values for adcctof1_gain.cnf trigger file
+5. `compareRunCCDB.sh`: bash script that gets ccdb values for a specific run and then calls a python script
+6. `compareRunCCDB.py`: python script that compares the output of a specific run to the current ccdb values of that run
+7. `changeTimeConstantsCCDB.sh`: bash script that changes time constants in ccdb based on some values
+8. `changeTimeConstantsCCDB.py`: python scripts that includes the time shift values and produces new time constants based on said value
+
+### Outputs
+
 1. `npeAllC[RUN NUM].png`: plot over all 48 channels showing the gain
 2. `npePMT[RUN NUM].dat`: text file with gain constants (submit to ccdb)
 3. `nphePMT[RUN NUM].png`: gain of all 48 channels plotted individually
@@ -24,14 +51,16 @@
 9. `compareRun[RUN NUM]CCDB.dat`: csv file with percent change comparison between run and ccdb values
 10. `compareRun[RUN NUM]CCDB_HTML.txt`: same info as above but formatted in html so that it can be easily c&p into logbook entry
 
-*Note: [RUN NUM] represents where the run number will go into the file name*
+> *Note: [RUN NUM] represents where the run number will go into the file name*
+
+---
 
 ## Instructions
 
 (These instruction assume that you are running scripts in this directory)
 
 1. Clone the repository:
-```
+```bash
 git clone https://github.com/JeffersonLab/clas12calibration-htcc.git
 ```
 2. Check that `script` has the following 3 files: `htccCalib.sh`, `HTCC_CalibEnviro.sh`, `htccCalib.groovy`
