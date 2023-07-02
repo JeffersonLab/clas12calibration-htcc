@@ -36,6 +36,14 @@
 9. `compareRun[RUN NUM]CCDB.dat`: csv file with percent change comparison between run and ccdb values
 10. `compareRun[RUN NUM]CCDB_HTML.txt`: same info as above but formatted in html so that it can be easily c&p into logbook entry
 
+Newly added output files:
+
+11. `correctionFactor_NphePMT[RUN NUM].dat`: dat file with NphePMT correction factor, etc
+12. `correctionFactor_TimePMT[RUN NUM].dat`: dat file with TimePMT correction factor, etc
+13. `infoplots_NPHE[RUN NUM].png`: Infographic plot related to NPHE. Starting from top left is nphe mean per channel, top right is nphe correction factor per channel, middle left is the current ccdb gain value per channel, middle right is the new gain value, bottom left is the difference between new and old gain values, bottom right is the percent difference with lines at 5 and 10% difference
+14. `infoplots_Time[RUN NUM].png`: Infographic plot related to Time. Starting from top left is the current ccdb time [ns] per channel, middle top is the new time [ns] per channel, bottom left is the time shift [ns], bottom middle is the time difference from new to old [ns], bottom right is the percent difference with red lines at 5% and 10%. 
+15. `nphePMT_ZOOM_[RUN NUM].png`: Zoomed in version of the nphePMT plot (easier to see mean nphe of the nphe distribution)
+
 *Note: [RUN NUM] represents where the run number will go into the file name*
 
 ---
