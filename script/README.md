@@ -1,5 +1,16 @@
 # HTCC Calibration Package
 
+- [Scripts](#scripts)
+  - [Included Files](#included-files)
+  - [Outputs](#outputs)
+- [Instructions](#instructions)
+- [Trigger Values](#trigger-values)
+- [Comparison of New Values to CCDB Values](#comparison-of-new-values-to-ccdb-values)
+- [CCDB Value Update History](#ccdb-value-update-history)
+- [Adjust CCDB Time Values by a Constant](#adjust-ccdb-time-values-by-a-constant)
+
+---
+
 ## Scripts
 
 #### Included Files
@@ -91,7 +102,7 @@ python3 GenTrigVals.py /w/hallb-scifs17exp/clas12/izzy/HTCCcalib/clas12calibrati
 ```
 ---
 
-### COMPARE NEW VALUES TO CCDB VALUES
+### Comparison of New Values to CCDB Values
 
 8. Run bash and python script to get comparison between a run's output dat file for time or gain vs the constants currently uploaded in CCDB. The bash script `compareRunCCDB.sh` runs the python script `compareRunCCDB.py`. The bash script takes 3 key-value arguments (can be input in any order):
 
@@ -111,17 +122,21 @@ And there are 3 outputs:
 ---
 
 ### CCDB VALUE UPDATE HISTORY
-
-9. If you'd like to check the change history for a parameter for a run range you can use `ccdb-ranges
-
-` command:
+9. If you'd like to check the change history for a parameter for a run range you can use `ccdb-ranges.py` from https://github.com/JeffersonLab/clas12-utilities/blob/master/bin/ccdb-ranges.py 
 
 **General**
 ```bash
-ccdb-ranges /calibration/htcc/[PARAMETER] [RUN RANGE]
+ccdb-ranges.py -min [RUN] -max [RUN] -table [parameter: gain or time] -dump
 ```
 **Example**
 ```bash
-ccdb-ranges /calibration/htcc/gain 5000-6000
+ccdb-ranges.py -min 6608 -max 6783 -table /calibration/htcc/time -dump
 ```
-You'll receive output that includes who made changes, when the changes were made, and the variation (default is "default").
+---
+### ADJUST CCDB TIME VALUES BY A CONSTANT
+10. If you'd like to adjust the time constants in ccdb by a simple addition of a constants you can use `changeTimeConstantsCCDB.sh` and `changeTimeConstantsCCDB.py`. You will need to change the `timeShift` value in the python script to whatever value you need. Currently the bash script is must be hardcoded for the run ranges in the script itself so you need to edit the arrays `MIN_RUNS` and `MAX_RUNS`. The bash script will call the python script itself and commit the changes to ccdb. To run these is fairly straight forward (after the appropriate changes have been made):
+
+**Example**
+```bash
+./changeTimeConstantsCCDB.sh
+```
