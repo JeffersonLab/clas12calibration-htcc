@@ -72,33 +72,36 @@ Newly added output files:
 
 ## Instructions
 
-(These instruction assume that you are running scripts in this directory)
+(These instructions assume that you are running scripts in this directory)
 
 1. Clone the repository:
 ```bash
 git clone https://github.com/JeffersonLab/clas12calibration-htcc.git
 ```
-2. Check that `script` has the following 3 files: `htccCalib.sh`, `HTCC_CalibEnviro.sh`, `htccCalib.groovy`
-3. Run `htccCalib.sh`
-```bash
-bash htccCalib.sh RUN_NUM=[] FILE_PATH=[]
-```
-Currently there are 2 command line arguments the user must provide when running `htccCalib.sh`: 
-  - RUN_NUM
-  - FILE_PATH
+2. Check that `script` has the following 4 files: `htccCalib.sh`, `HTCC_CalibEnviro.sh`, `htccCalib.groovy`, `calibrateMultipleRuns.sh`.
+3. Run `htccCalib.sh` for a single run or `calibrateMultipleRuns.sh` for multiple runs.
+  
+   **Single Run:**
+   ```bash
+   bash htccCalib.sh RUN_NUM=[] FILE_PATH=[]
+   ```
+   In this case, `FILE_PATH` should point to a specific HTCC skimmed hipo file.
 
-Order does not matter as long as the key is used. 
+   **Multiple Runs:**
+   ```bash
+   bash calibrateMultipleRuns.sh FILE_PATH=[]
+   ```
+   For multiple runs, `FILE_PATH` should be the directory path where multiple HTCC skimmed hipo files are located.
 
-*Note: [RUN RANGE] represents where a range of runs should be specified and [RUN NUM] represents where the run number will go into the file name*
+   Both scripts take command-line arguments, which the user must provide when running them: 
+   
+   - `RUN_NUM` for `htccCalib.sh`
+   - `FILE_PATH` for both scripts
 
-**Example**:
-```bash
-bash htccCalib.sh RUN_NUM=004143 FILE_PATH=/lustre19/expphy/volatile/clas12/rg-a/production/pass0/Spring18/v1_1.1.86/calib/train/skim6/skim6_004143.hipo
-```
-4. Upon successful completion of the script the outputs can be found in `$PWD/CalibRes/$RUN_NUM/$
+**Note:** For extensive calibration tasks involving multiple runs, you might want to consider running the calibration scripts as batch jobs on the Jefferson Lab computing cluster, which uses the Slurm workload manager. You could write a bash script to submit a Slurm job to the batch farm to automate this process. However, an example script for this purpose is not currently included in this repository. If this is a great concern, I can provide a working example. If you want to see what I use, a bash script to submit slurm jobs can be found at /w/hallb-scshelf2102/clas12/izzy/HTCCcalib/clas12calibration-htcc/script/submitFarmJobHTCC.sh (use at your own risk!).
 
-TODAY` 
-5. Submit the calibration constants (the .dat files in the outputs) for the relevant run range for the gain and timing
+4. Upon successful completion of the scripts, the outputs can be found in `$PWD/CalibRes/$RUN_NUM/$TODAY`.
+5. Submit the calibration constants (the .dat files in the outputs) for the relevant run range for the gain and timing as described in the original instructions.
 
 **Gain**:
 ```bash
@@ -165,7 +168,7 @@ python3 generateComparisonPlots.py --run_nums 004763 005423 --dates 28-Jun-2023 
 ```
 The script will generate and save a plot named 'correction_factors_and_percent_changes_by_run_number_and_sector.png' in the current directory, which compares gain and time constants for different sectors across the specified run numbers and dates. *Note*: X11 may pull up the plot as an image and you will need to save it manually. The save button should be on the bottom left. In this scenario the python script will not save the image automatically. 
 
-**Please remember to replace `[RUN NUMBERS]`, `[DATES]`, and `[DIRECTORY PATH]` with appropriate values when running the scripts.**
+#### **Please remember to replace `[RUN NUMBERS]`, `[DATES]`, and `[DIRECTORY PATH]` with appropriate values when running the scripts.**
 ---
 
 ### CCDB VALUE UPDATE HISTORY
