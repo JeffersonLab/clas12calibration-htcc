@@ -6,7 +6,8 @@
 - [Instructions](#instructions)
 - [Trigger Values](#trigger-values)
 - [Comparisons](#comparisons)
-  - [CSV Comparing New Values to CCDB Values](#csv-comparing-new-values-to-ccdb-values)
+  - [Comparing New Calibration Constants to old CCDB Values: CSV format](#csv-comparing-new-values-to-ccdb-values)
+  - [Comparing New Calibration Constants to old CCDB Values: Plots](#python-script-to-generate-plots-comparing-gain-and-time-constants)
 - [CCDB Value Update History](#ccdb-value-update-history)
 - [Adjust CCDB Time Values by a Constant](#adjust-ccdb-time-values-by-a-constant)
 
@@ -129,6 +130,21 @@ And there are 3 outputs:
   - compareRun[number]CCDB.dat: csv file with percent change comparison between run and ccdb values
   - compareRun[number]CCDB_HTML.txt: same info as above but formatted in html so that it can be easily c&p into logbook entry
 
+### Python Script to Generate Plots Comparing Gain and Time Constants
+
+The Python script `generateComparisonPlots.py` generates plots comparing gain and time constants between different runs. It outputs these plots to a specified directory and also displays them on the screen. It takes three arguments: run numbers, dates, and the top directory. The script requires Python 3.x and the following modules: `os`, `glob`, `argparse`, `matplotlib`, `seaborn`, `pandas`.
+
+**General**
+```bash
+python3 generateComparisonPlots.py --run_nums [RUN NUMBERS] --dates [DATES] --top_dir [DIRECTORY PATH]
+```
+**Example**
+```bash
+python3 generateComparisonPlots.py --run_nums 004763 005423 --dates 28-Jun-2023 29-Jun-2023 30-Jun-2023 --top_dir /w/hallb-scshelf2102/clas12/izzy/temp/clas12calibration-htcc/script/CalibRes
+```
+The script will generate and save a plot named 'correction_factors_and_percent_changes_by_run_number_and_sector.png' in the current directory, which compares gain and time constants for different sectors across the specified run numbers and dates. *Note*: X11 may pull up the plot as an image and you will need to save it manually. The save button should be on the bottom left. In this scenario the python script will not save the image automatically. 
+
+**Please remember to replace `[RUN NUMBERS]`, `[DATES]`, and `[DIRECTORY PATH]` with appropriate values when running the scripts.**
 ---
 
 ### CCDB VALUE UPDATE HISTORY
