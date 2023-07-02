@@ -5,7 +5,8 @@
   - [Outputs](#outputs)
 - [Instructions](#instructions)
 - [Trigger Values](#trigger-values)
-- [Comparison of New Values to CCDB Values](#comparison-of-new-values-to-ccdb-values)
+- [Comparisons](#comparisons)
+  - [CSV Comparing New Values to CCDB Values](#csv-comparing-new-values-to-ccdb-values)
 - [CCDB Value Update History](#ccdb-value-update-history)
 - [Adjust CCDB Time Values by a Constant](#adjust-ccdb-time-values-by-a-constant)
 
@@ -101,8 +102,9 @@ python3 GenTrigVals.py [file]
 python3 GenTrigVals.py /w/hallb-scifs17exp/clas12/izzy/HTCCcalib/clas12calibration-htcc/script/CalibRes/015045/13-Nov-2021/npePMT15045.dat
 ```
 ---
+### Comparisons 
 
-### Comparison of New Values to CCDB Values
+#### CSV Comparing New Values to CCDB Values
 
 8. Run bash and python script to get comparison between a run's output dat file for time or gain vs the constants currently uploaded in CCDB. The bash script `compareRunCCDB.sh` runs the python script `compareRunCCDB.py`. The bash script takes 3 key-value arguments (can be input in any order):
 
