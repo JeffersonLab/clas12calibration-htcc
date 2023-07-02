@@ -98,7 +98,7 @@ python3 GenTrigVals.py [file]
 python3 GenTrigVals.py /w/hallb-scifs17exp/clas12/izzy/HTCCcalib/clas12calibration-htcc/script/CalibRes/015045/13-Nov-2021/npePMT15045.dat
 ```
 ---
-### COMPARE NEW VALUES TO CCDB VALUES
+### Comparison of New Values to CCDB Values
 8. Run bash and python script to get comparison between a run's output dat file for time or gain vs the constants currently uploaded in CCDB. The bash script `compareRunCCDB.sh` runs the python script `compareRunCCDB.py`. The bash script takes 3 key-value arguments (can be input in any order):
 
 **General**
@@ -114,7 +114,7 @@ And there are 3 outputs:
   - compareRun[number]CCDB.dat: csv file with percent change comparison between run and ccdb values
   - compareRun[number]CCDB_HTML.txt: same info as above but formatted in html so that it can be easily c&p into logbook entry
 ---
-### CCDB VALUE UPDATE HISTORY
+### CCDB Value Update History
 9. If you'd like to check the change history for a parameter for a run range you can use `ccdb-ranges.py` from https://github.com/JeffersonLab/clas12-utilities/blob/master/bin/ccdb-ranges.py 
 
 **General**
@@ -126,7 +126,7 @@ ccdb-ranges.py -min [RUN] -max [RUN] -table [parameter: gain or time] -dump
 ccdb-ranges.py -min 6608 -max 6783 -table /calibration/htcc/time -dump
 ```
 ---
-### ADJUST CCDB TIME VALUES BY A CONSTANT
+### Adjust CCDB Time Values by a Constant
 10. If you'd like to adjust the time constants in ccdb by a simple addition of a constants you can use `changeTimeConstantsCCDB.sh` and `changeTimeConstantsCCDB.py`. You will need to change the `timeShift` value in the python script to whatever value you need. Currently the bash script is must be hardcoded for the run ranges in the script itself so you need to edit the arrays `MIN_RUNS` and `MAX_RUNS`. The bash script will call the python script itself and commit the changes to ccdb. To run these is fairly straight forward (after the appropriate changes have been made):
 
 **Example**
