@@ -31,6 +31,18 @@ To access or modify the trigger file, you will need to be added to the `clon_clu
 
 Depending on the files you need to modify, you might need to be added to the `clas` group. To request this, please contact Harut Avakian at [avakian@jlab.org](mailto:avakian@jlab.org).
 
+### In order to run files
+
+Please make sure that you have the necessary permissions to run these scripts. You can give yourself execute permissions for the python and bash scripts using the following command:
+```bash
+chmod u+x [file]
+```
+**Example**:
+```bash
+chmod u+x *.py
+chmod u+x *.sh
+```
+
 #### Remember, obtaining these permissions might take some time, so plan accordingly.
 ---
 
@@ -43,8 +55,10 @@ Depending on the files you need to modify, you might need to be added to the `cl
 4. `GenTrigVals.py`: python script to compute values for adcctof1_gain.cnf trigger file
 5. `compareRunCCDB.sh`: bash script that gets ccdb values for a specific run and then calls a python script
 6. `compareRunCCDB.py`: python script that compares the output of a specific run to the current ccdb values of that run
-7. `changeTimeConstantsCCDB.sh`: bash script that changes time constants in ccdb based on some values
-8. `changeTimeConstantsCCDB.py`: python scripts that includes the time shift values and produces new time constants based on said value
+7. `compareMultipleCCDB.sh`: bash script that compares the output of multiple runs to the current ccdb values
+8. `createImages.sh`: bash script that combines multiple plots into single images
+9. `changeTimeConstantsCCDB.sh`: bash script that changes time constants in ccdb based on some values
+10. `changeTimeConstantsCCDB.py`: python scripts that includes the time shift values and produces new time constants based on said value
 
 ##### Outputs
 1. `npeAllC[RUN NUM].png`: plot over all 48 channels showing the gain
@@ -57,14 +71,13 @@ Depending on the files you need to modify, you might need to be added to the `cl
 8. `ccdb_time_run[RUN NUM].dat`: dat file with ccdb info
 9. `compareRun[RUN NUM]CCDB.dat`: csv file with percent change comparison between run and ccdb values
 10. `compareRun[RUN NUM]CCDB_HTML.txt`: same info as above but formatted in html so that it can be easily c&p into logbook entry
-
-Newly added output files:
-
 11. `correctionFactor_NphePMT[RUN NUM].dat`: dat file with NphePMT correction factor, etc
 12. `correctionFactor_TimePMT[RUN NUM].dat`: dat file with TimePMT correction factor, etc
 13. `infoplots_NPHE[RUN NUM].png`: Infographic plot related to NPHE. Starting from top left is nphe mean per channel, top right is nphe correction factor per channel, middle left is the current ccdb gain value per channel, middle right is the new gain value, bottom left is the difference between new and old gain values, bottom right is the percent difference with lines at 5 and 10% difference
 14. `infoplots_Time[RUN NUM].png`: Infographic plot related to Time. Starting from top left is the current ccdb time [ns] per channel, middle top is the new time [ns] per channel, bottom left is the time shift [ns], bottom middle is the time difference from new to old [ns], bottom right is the percent difference with red lines at 5% and 10%. 
 15. `nphePMT_ZOOM_[RUN NUM].png`: Zoomed in version of the nphePMT plot (easier to see mean nphe of the nphe distribution)
+16. `Combo_GainTime_$RUN.png`: Combination of Gain and Time plots
+17. `Combo_Info_$RUN.png`: Combination of Info NPHE and Info Time plots
 
 *Note: [RUN NUM] represents where the run number will go into the file name*
 
@@ -134,12 +147,13 @@ python3 GenTrigVals.py [file]
 ```bash
 python3 GenTrigVals.py /w/hallb-scifs17exp/clas12/izzy/HTCCcalib/clas12calibration-htcc/script/CalibRes/015045/13-Nov-2021/npePMT15045.dat
 ```
----
 ## Comparisons 
 
 ### CSV Comparing New Values to CCDB Values
 
-8. Run bash and python script to get comparison between a run's output dat file for time or gain vs the constants currently uploaded in CCDB. The bash script `compareRunCCDB.sh` runs the python script `compareRunCCDB.py`. The bash script takes 3 key-value arguments (can be input in any order):
+8. Run bash and python script to get comparison between a run's output dat file for time or gain vs the constants currently uploaded in CCDB. There are two bash scripts: `compareRunCCDB.sh` and `compareMultipleCCDB.sh`. 
+
+`compareRunCCDB.sh` runs the python script `compareRunCCDB.py`. The bash script takes 3 key-value arguments (can be input in any order):
 
 **General**
 ```bash
@@ -149,10 +163,30 @@ python3 GenTrigVals.py /w/hallb-scifs17exp/clas12/izzy/HTCCcalib/clas12calibrati
 ```bash
 ./compareRunCCDB.sh RUN_NUM=016702 PARAMETER=time FILE_PATH=/work/clas12/izzy/HTCCcalib/clas12calibration-htcc/script/CalibRes/016702/08-Sep-2022/timePMT16702.dat
 ```
+`compareMultipleCCDB.sh` runs the `compareRunCCDB.sh` for multiple runs and dates. It takes 3 key-value arguments (can be input in any order):
+
+**General**
+```bash
+./compareMultipleCCDB.sh DATES=[] SUPERDIR=[] RUNNUMS=[]
+```
+**Example**
+```bash
+./compareMultipleCCDB.sh DATES=10-Jul-2023 SUPERDIR=/w/hallb-scshelf2102/clas12/izzy/temp2/clas12calibration-htcc/script/CalibRes RUNNUMS=004763 004867 004889 004893 005125 005300 005318 005319 005325 005341 005346 005367 005381 005393 005407 005414 005415 005416 005417 005418 005419
+```
+
 And there are 3 outputs: 
   - ccdb_time_run[number].dat: dat file with ccdb info
   - compareRun[number]CCDB.dat: csv file with percent change comparison between run and ccdb values
   - compareRun[number]CCDB_HTML.txt: same info as above but formatted in html so that it can be easily c&p into logbook entry
+
+You can also create images (for better use in powerpoint slides) with the following script:
+```bash
+./createImages.sh DATES=[] SUPERDIR=[] RUNNUMS=[]
+```
+**Example**
+```bash
+./createImages.sh DATES=10-Jul-2023 SUPERDIR=/w/hallb-scshelf2102/clas12/izzy/temp2/clas12calibration-htcc/script/CalibRes RUNNUMS=004763 004867 004889 004893 005125 005300 005318 005319 005325 005341 005346 005367 005381 005393 005407 005414 005415 005416 005417 005418 005419
+```
 
 ### Python Script to Generate Plots Comparing Gain and Time Constants
 
