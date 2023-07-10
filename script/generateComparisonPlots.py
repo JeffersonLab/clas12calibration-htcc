@@ -56,8 +56,9 @@ def plot_correction_factors_and_percent_changes(run_info):
             sector_patches += [mlines.Line2D([], [], color=color_dict[sector], marker=marker_dict[sector], linestyle='None', markersize=10, label=f'Sector {sector}') for sector in sectors]
             for sector in sectors:
                 df_sector = nphe_df[nphe_df['Sector'] == sector]
-                axs[0, 0].scatter(int(run_num), df_sector['Factor'].mean(), color=color_dict[sector], marker=marker_dict[sector])
-                axs[0, 1].scatter(int(run_num), df_sector['PercentChange'].mean(), color=color_dict[sector], marker=marker_dict[sector])
+                x_values = [int(run_num)] * len(df_sector['Factor'])
+                axs[0, 0].scatter(x_values, df_sector['Factor'], color=color_dict[sector], marker=marker_dict[sector])
+                axs[0, 1].scatter(x_values, df_sector['PercentChange'], color=color_dict[sector], marker=marker_dict[sector])
         if time_df is not None:
             sectors = time_df['Sector'].unique()
             colors = sns.color_palette(n_colors=len(sectors))
@@ -65,8 +66,9 @@ def plot_correction_factors_and_percent_changes(run_info):
             marker_dict = dict(zip(sectors, markers))
             for sector in sectors:
                 df_sector = time_df[time_df['Sector'] == sector]
-                axs[1, 0].scatter(int(run_num), df_sector['TimeShift'].mean(), color=color_dict[sector], marker=marker_dict[sector])
-                axs[1, 1].scatter(int(run_num), df_sector['PercentChange'].mean(), color=color_dict[sector], marker=marker_dict[sector])
+                x_values = [int(run_num)] * len(df_sector['TimeShift'])
+                axs[1, 0].scatter(x_values, df_sector['TimeShift'], color=color_dict[sector], marker=marker_dict[sector])
+                axs[1, 1].scatter(x_values, df_sector['PercentChange'], color=color_dict[sector], marker=marker_dict[sector])
     for i, ax in enumerate(axs.flatten()):
         ax.set_title(titles[i])
         ax.set_xlabel('Run Number')
