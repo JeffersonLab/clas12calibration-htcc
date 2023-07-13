@@ -225,9 +225,6 @@ ccdb-ranges.py -min 6608 -max 6783 -table /calibration/htcc/time -dump
 ./changeTimeConstantsCCDB.sh
 ```
 ---
-Sure, here is a draft for the section about the hardware status tables in your markdown:
-
----
 ## Hardware Status Tables
 
 The Hardware Status Tables are crucial components of the calibration process. They define the status of different hardware components used in the data acquisition. For each component, a status value different from 0 indicates that the component did not operate normally. These tables play an important role in identifying and handling problematic or non-operational detector elements during the reconstruction process.
