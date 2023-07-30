@@ -171,7 +171,7 @@ python3 GenTrigVals.py /w/hallb-scifs17exp/clas12/izzy/HTCCcalib/clas12calibrati
 ```
 **Example**
 ```bash
-./compareMultipleCCDB.sh DATES=10-Jul-2023 SUPERDIR=/w/hallb-scshelf2102/clas12/izzy/temp2/clas12calibration-htcc/script/CalibRes RUNNUMS=004763 004867 004889 004893 005125 005300 005318 005319 005325 005341 005346 005367 005381 005393 005407 005414 005415 005416 005417 005418 005419
+./compareMultipleCCDB.sh DATES="10-Jul-2023" SUPERDIR="/w/hallb-scshelf2102/clas12/izzy/temp2/clas12calibration-htcc/script/CalibRes" RUNNUMS="004763 004867 004889 004893 005125 005300 005318 005319 005325 005341 005346 005367 005381 005393 005407 005414 005415 005416 005417 005418 005419"
 ```
 
 And there are 3 outputs: 
@@ -185,7 +185,7 @@ You can also create images (for better use in powerpoint slides) with the follow
 ```
 **Example**
 ```bash
-./createImages.sh DATES=10-Jul-2023 SUPERDIR=/w/hallb-scshelf2102/clas12/izzy/temp2/clas12calibration-htcc/script/CalibRes RUNNUMS=004763 004867 004889 004893 005125 005300 005318 005319 005325 005341 005346 005367 005381 005393 005407 005414 005415 005416 005417 005418 005419
+./createImages.sh DATES="10-Jul-2023" SUPERDIR="/w/hallb-scshelf2102/clas12/izzy/temp2/clas12calibration-htcc/script/CalibRes" RUNNUMS="004763 004867 004889 004893 005125 005300 005318 005319 005325 005341 005346 005367 005381 005393 005407 005414 005415 005416 005417 005418 005419"
 ```
 
 ### Python Script to Generate Plots Comparing Gain and Time Constants
