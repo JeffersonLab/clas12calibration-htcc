@@ -59,6 +59,8 @@ chmod u+x *.sh
 8. `createImages.sh`: bash script that combines multiple plots into single images
 9. `changeTimeConstantsCCDB.sh`: bash script that changes time constants in ccdb based on some values
 10. `changeTimeConstantsCCDB.py`: python scripts that includes the time shift values and produces new time constants based on said value
+11. #### **New as of 2 Dec 2023** :rotating_light:
+**OneScriptToRunThemAll.sh**: This new script simplifies the calibration process by executing multiple steps sequentially. It runs the calibration, generates analysis plots for each individual run, and then plots a trend over all runs for gain and time.
 
 ##### Outputs
 1. `npeAllC[RUN NUM].png`: plot over all 48 channels showing the gain
