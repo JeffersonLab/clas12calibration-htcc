@@ -59,7 +59,7 @@ chmod u+x *.sh
 8. `createImages.sh`: bash script that combines multiple plots into single images
 9. `changeTimeConstantsCCDB.sh`: bash script that changes time constants in ccdb based on some values
 10. `changeTimeConstantsCCDB.py`: python scripts that includes the time shift values and produces new time constants based on said value
-11. :rotating_light: #### **New as of 2 Dec 2023** :rotating_light:
+11. :rotating_light: **New as of 2 Dec 2023** :rotating_light:
 **OneScriptToRunThemAll.sh**: This new script simplifies the calibration process by executing multiple steps sequentially. It runs the calibration, generates analysis plots for each individual run, and then plots a trend over all runs for gain and time.
 
 ##### Outputs
@@ -99,7 +99,7 @@ git clone https://github.com/JeffersonLab/clas12calibration-htcc.git
   ```
   ./OneScriptToRunThemAll.sh FILE_PATH=[Your File Path Here]
   ```
-For example:
+  For example:
   ```
   ./OneScriptToRunThemAll.sh FILE_PATH=/volatile/clas12/rg-c/production/calib/10.0.2_TBT_11_30_23/calib/train/htcc/
   ```
