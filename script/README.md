@@ -60,7 +60,7 @@ chmod u+x *.sh
 9. `changeTimeConstantsCCDB.sh`: bash script that changes time constants in ccdb based on some values
 10. `changeTimeConstantsCCDB.py`: python scripts that includes the time shift values and produces new time constants based on said value
 11. :rotating_light: **New as of 2 Dec 2023** :rotating_light:
-**OneScriptToRunThemAll.sh**: This new script simplifies the calibration process by executing multiple steps sequentially. It runs the calibration, generates analysis plots for each individual run, and then plots a trend over all runs for gain and time.
+**`OneScriptToRunThemAll.sh`**: This new script simplifies the calibration process by executing multiple steps sequentially. It runs the calibration, generates analysis plots for each individual run, and then plots a trend over all runs for gain and time.
 
 ##### Outputs
 1. `npeAllC[RUN NUM].png`: plot over all 48 channels showing the gain
@@ -93,9 +93,9 @@ chmod u+x *.sh
 ```bash
 git clone https://github.com/JeffersonLab/clas12calibration-htcc.git
 ```
-2. Check that script has the following files: htccCalib.sh, HTCC_CalibEnviro.sh, htccCalib.groovy, calibrateMultipleRuns.sh, and the newly added OneScriptToRunThemAll.sh.
+2. Check that script has the following files: `htccCalib.sh`, `HTCC_CalibEnviro.sh`, `htccCalib.groovy`, `calibrateMultipleRuns.sh`, and the newly added `OneScriptToRunThemAll.sh`.
 :rotating_light: New as of 2 Dec 2023 :rotating_light:
-3. To run the new script OneScriptToRunThemAll.sh, which includes all steps up to and including the generation of plots comparing gain and time constants (Section Python Script to Generate Plots Comparing Gain and Time Constants), use the following command:
+3. To run the new script `OneScriptToRunThemAll.sh`, which includes all steps up to and including the generation of plots comparing gain and time constants (Section Python Script to Generate Plots Comparing Gain and Time Constants (#python-script-to-generate-plots-comparing-gain-and-time-constants) ), use the following command:
   ```
   ./OneScriptToRunThemAll.sh FILE_PATH=[Your File Path Here]
   ```
