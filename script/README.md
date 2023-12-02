@@ -59,7 +59,7 @@ chmod u+x *.sh
 8. `createImages.sh`: bash script that combines multiple plots into single images
 9. `changeTimeConstantsCCDB.sh`: bash script that changes time constants in ccdb based on some values
 10. `changeTimeConstantsCCDB.py`: python scripts that includes the time shift values and produces new time constants based on said value
-11. #### **New as of 2 Dec 2023** :rotating_light:
+11. :rotating_light: #### **New as of 2 Dec 2023** :rotating_light:
 **OneScriptToRunThemAll.sh**: This new script simplifies the calibration process by executing multiple steps sequentially. It runs the calibration, generates analysis plots for each individual run, and then plots a trend over all runs for gain and time.
 
 ##### Outputs
@@ -93,8 +93,17 @@ chmod u+x *.sh
 ```bash
 git clone https://github.com/JeffersonLab/clas12calibration-htcc.git
 ```
-2. Check that `script` has the following 4 files: `htccCalib.sh`, `HTCC_CalibEnviro.sh`, `htccCalib.groovy`, `calibrateMultipleRuns.sh`.
-3. Run `htccCalib.sh` for a single run or `calibrateMultipleRuns.sh` for multiple runs.
+2. Check that script has the following files: htccCalib.sh, HTCC_CalibEnviro.sh, htccCalib.groovy, calibrateMultipleRuns.sh, and the newly added OneScriptToRunThemAll.sh.
+:rotating_light: New as of 2 Dec 2023 :rotating_light:
+3. To run the new script OneScriptToRunThemAll.sh, which includes all steps up to and including the generation of plots comparing gain and time constants (Section Python Script to Generate Plots Comparing Gain and Time Constants), use the following command:
+  ```
+  ./OneScriptToRunThemAll.sh FILE_PATH=[Your File Path Here]
+  ```
+For example:
+  ```
+  ./OneScriptToRunThemAll.sh FILE_PATH=/volatile/clas12/rg-c/production/calib/10.0.2_TBT_11_30_23/calib/train/htcc/
+  ```
+4. Run `htccCalib.sh` for a single run or `calibrateMultipleRuns.sh` for multiple runs.
   
    **Single Run:**
    ```bash
@@ -115,8 +124,8 @@ git clone https://github.com/JeffersonLab/clas12calibration-htcc.git
 
 **Note:** For extensive calibration tasks involving multiple runs, you might want to consider running the calibration scripts as batch jobs on the Jefferson Lab computing cluster, which uses the Slurm workload manager. You could write a bash script to submit a Slurm job to the batch farm to automate this process. However, an example script for this purpose is not currently included in this repository. If this is a great concern, I can provide a working example. If you want to see what I use, a bash script to submit slurm jobs can be found at /w/hallb-scshelf2102/clas12/izzy/HTCCcalib/clas12calibration-htcc/script/submitFarmJobHTCC.sh (use at your own risk!).
 
-4. Upon successful completion of the scripts, the outputs can be found in `$PWD/CalibRes/$RUN_NUM/$TODAY`.
-5. Submit the calibration constants (the .dat files in the outputs) for the relevant run range for the gain and timing as described in the original instructions.
+5. Upon successful completion of the scripts, the outputs can be found in `$PWD/CalibRes/$RUN_NUM/$TODAY`.
+6. Submit the calibration constants (the .dat files in the outputs) for the relevant run range for the gain and timing as described in the original instructions.
 
 **Gain**:
 ```bash
