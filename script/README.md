@@ -95,7 +95,7 @@ git clone https://github.com/JeffersonLab/clas12calibration-htcc.git
 ```
 2. Check that script has the following files: `htccCalib.sh`, `HTCC_CalibEnviro.sh`, `htccCalib.groovy`, `calibrateMultipleRuns.sh`, and the newly added `OneScriptToRunThemAll.sh`.
 :rotating_light: New as of 2 Dec 2023 :rotating_light:
-3. To run the new script `OneScriptToRunThemAll.sh`, which includes all steps up to and including the generation of plots comparing gain and time constants (Section Python Script to Generate Plots Comparing Gain and Time Constants (#python-script-to-generate-plots-comparing-gain-and-time-constants) ), use the following command:
+3. To run the new script `OneScriptToRunThemAll.sh`, which includes all steps up to and including the generation of plots comparing gain and time constants (Section Python Script to Generate Plots Comparing Gain and Time Constants), use the following command:
   ```
   ./OneScriptToRunThemAll.sh FILE_PATH=[Your File Path Here]
   ```
@@ -103,6 +103,7 @@ git clone https://github.com/JeffersonLab/clas12calibration-htcc.git
   ```
   ./OneScriptToRunThemAll.sh FILE_PATH=/volatile/clas12/rg-c/production/calib/10.0.2_TBT_11_30_23/calib/train/htcc/
   ```
+  :rotating_light: :rotating_light:
 4. Run `htccCalib.sh` for a single run or `calibrateMultipleRuns.sh` for multiple runs.
   
    **Single Run:**
