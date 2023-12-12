@@ -1,10 +1,18 @@
 import pandas as pd
 import sys
 
+# Check if enough arguments are provided
+if len(sys.argv) < 4:
+    print("Usage: python3 script.py runNum fileCCDB timeShift")
+    sys.exit(1)
+
 runNum = int(sys.argv[1])
 fileCCDB = sys.argv[2]
+timeShift = float(sys.argv[3])  # Accept timeShift as a command-line argument
+
 print(sys.argv[1])
 print(sys.argv[2])
+print(sys.argv[3])
 
 def readDatFile(filePath, ccdbBool, paramName):
     """
@@ -75,10 +83,10 @@ df_compare["R"] = df_ccdb["R"]
 
 #-----TIME SHIFT PARAMETER-----#
 #see example for how these were calculated over at this entry https://logbooks.jlab.org/entry/4049486
-timeShift = -5.921569
+#timeShift = 0.2
+#timeShift = -5.921569
 #timeShift = -5.905573636363638
 df_compare["time"] = df_ccdb["time"] + timeShift
 
 print(df_compare.tail())
 df_compare.to_csv("run%d_%s.dat" % (runNum, "time"), sep=" ", header=False, index=False)
-
