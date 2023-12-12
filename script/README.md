@@ -235,10 +235,20 @@ ccdb-ranges.py -min 6608 -max 6783 -table /calibration/htcc/time -dump
 ### ADJUST CCDB TIME VALUES BY A CONSTANT
 10. If you'd like to adjust the time constants in ccdb by a simple addition of a constants you can use `changeTimeConstantsCCDB.sh` and `changeTimeConstantsCCDB.py`. You will need to change the `timeShift` value in the python script to whatever value you need. Currently the bash script is must be hardcoded for the run ranges in the script itself so you need to edit the arrays `MIN_RUNS` and `MAX_RUNS`. The bash script will call the python script itself and commit the changes to ccdb. To run these is fairly straight forward (after the appropriate changes have been made):
 
+🚨 New as of 12 Dec 2023 🚨
+
+The bash and python scripts have been update to accept command line arguments.
+
 **Example**
 ```bash
-./changeTimeConstantsCCDB.sh
+./changeTimeConstantsCCDB.sh [timeShift] "[minRuns]" "[maxRuns]"
 ```
+Now you can specify the time shift (rather than hardcoded in the python script) and you can provide a list of the runs.
+**Example**
+```bash
+./changeTimeConstantsCCDB.sh -5.996 "6608 6633 6662" "6632 6661 6686"
+```
+🚨 New as of 12 Dec 2023 🚨
 ---
 ## Hardware Status Tables
 
