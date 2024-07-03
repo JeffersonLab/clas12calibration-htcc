@@ -11,6 +11,7 @@
   - [Plots](#python-script-to-generate-plots-comparing-gain-and-time-constants)
 - [CCDB Value Update History](#ccdb-value-update-history)
 - [Adjust CCDB Time Values by a Constant](#adjust-ccdb-time-values-by-a-constant)
+- [Adjust CCDB Gain Values by a Constant](#adjust-ccdb-gain-values-by-a-constant)
 - [Hardware Status Tables](#hardware-status-tables)
 
 ---
@@ -59,8 +60,9 @@ chmod u+x *.sh
 8. `createImages.sh`: bash script that combines multiple plots into single images
 9. `changeTimeConstantsCCDB.sh`: bash script that changes time constants in ccdb based on some values
 10. `changeTimeConstantsCCDB.py`: python scripts that includes the time shift values and produces new time constants based on said value
-11. :rotating_light: **New as of 2 Dec 2023** :rotating_light:
-**`OneScriptToRunThemAll.sh`**: This new script simplifies the calibration process by executing multiple steps sequentially. It runs the calibration, generates analysis plots for each individual run, and then plots a trend over all runs for gain and time.
+11. `OneScriptToRunThemAll.sh`: This new script simplifies the calibration process by executing multiple steps sequentially. It runs the calibration, generates analysis plots for each individual run, and then plots a trend over all runs for gain and time.
+12. :rotating_light: **New as of 3 July 2024** :rotating_light:
+**`changeGainConstantsCCDB.sh`** and `changeGainConstantsCCDB.py`: bash and python scripts that changes gain constants in ccdb based on normalization factors for each sector.
 
 ##### Outputs
 1. `npeAllC[RUN NUM].png`: plot over all 48 channels showing the gain
@@ -235,8 +237,6 @@ ccdb-ranges.py -min 6608 -max 6783 -table /calibration/htcc/time -dump
 ### ADJUST CCDB TIME VALUES BY A CONSTANT
 10. If you'd like to adjust the time constants in ccdb by a simple addition of a constants you can use `changeTimeConstantsCCDB.sh` and `changeTimeConstantsCCDB.py`. You will need to change the `timeShift` value in the python script to whatever value you need. Currently the bash script is must be hardcoded for the run ranges in the script itself so you need to edit the arrays `MIN_RUNS` and `MAX_RUNS`. The bash script will call the python script itself and commit the changes to ccdb. To run these is fairly straight forward (after the appropriate changes have been made):
 
-🚨 New as of 12 Dec 2023 🚨
-
 The bash and python scripts have been update to accept command line arguments.
 
 **Example**
@@ -248,7 +248,25 @@ Now you can specify the time shift (rather than hardcoded in the python script) 
 ```bash
 ./changeTimeConstantsCCDB.sh -5.996 "6608 6633 6662" "6632 6661 6686"
 ```
-🚨 New as of 12 Dec 2023 🚨
+---
+### ADJUST CCDB GAIN VALUES BY A CONSTANT
+11. If you'd like to adjust the gain constants in ccdb by a normalization factor for each sector, you can use changeGainConstantsCCDB.sh and changeGainConstantsCCDB.py. The bash and python scripts have been updated to accept command-line arguments for the normalization factors and run ranges.
+
+🚨 New as of 3 July 2024 🚨
+
+The bash and python scripts have been update to accept command line arguments.
+
+**Example**
+```bash
+./changeGainConstantsCCDB.sh MIN_RUN=<minRun> MAX_RUN=<maxRun> SEC1_NORM=<factor> SEC2_NORM=<factor> SEC3_NORM=<factor> SEC4_NORM=<factor> SEC5_NORM=<factor> SEC6_NORM=<factor>
+```
+Now you can specify the normalization factors (rather than hardcoded in the python script) and provide a list of the runs.
+**Example**
+```bash
+./changeGainConstantsCCDB.sh MIN_RUN=17482 MAX_RUN=17482 SEC1_NORM=1.08734 SEC2_NORM=1.02248 SEC3_NORM=0.96556 SEC4_NORM=0.87833 SEC5_NORM=0.93707 SEC6_NORM=1.07589
+```
+The default behavior is to assume that the normalization factors are all 1.
+🚨 New as of 3 July 2024 🚨
 ---
 ## Hardware Status Tables
 
