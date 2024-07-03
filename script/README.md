@@ -266,6 +266,7 @@ Now you can specify the normalization factors (rather than hardcoded in the pyth
 ./changeGainConstantsCCDB.sh MIN_RUN=17482 MAX_RUN=17482 SEC1_NORM=1.08734 SEC2_NORM=1.02248 SEC3_NORM=0.96556 SEC4_NORM=0.87833 SEC5_NORM=0.93707 SEC6_NORM=1.07589
 ```
 The default behavior is to assume that the normalization factors are all 1.
+
 🚨 New as of 3 July 2024 🚨
 ---
 ## Hardware Status Tables
