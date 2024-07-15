@@ -236,6 +236,7 @@ ccdb-ranges.py -min 6608 -max 6783 -table /calibration/htcc/time -dump
 ---
 ### ADJUST CCDB TIME VALUES BY A CONSTANT
 🚨 New as of 15 July 2024 🚨
+
 10. If you'd like to adjust the time constants in CCDB by a simple addition of a constant, you can use `changeTimeConstantsCCDB.sh` and `changeTimeConstantsCCDB.py`. These scripts now support sector-specific time shifts and accept command-line arguments for the run range and sector-specific shifts.
 
 The bash and python scripts have been updated to accept command line arguments.
@@ -295,6 +296,7 @@ for run, group in grouped:
 ```
 This Python script automates the process of applying sector-specific time shifts for each run based on the CSV file. Use this as an example for your own calibrations.
 🚨 New as of 15 July 2024 🚨
+
 ---
 ### ADJUST CCDB GAIN VALUES BY A CONSTANT
 11. If you'd like to adjust the gain constants in ccdb by a normalization factor for each sector, you can use changeGainConstantsCCDB.sh and changeGainConstantsCCDB.py. The bash and python scripts have been updated to accept command-line arguments for the normalization factors and run ranges.
