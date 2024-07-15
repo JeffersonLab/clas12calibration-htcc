@@ -235,19 +235,66 @@ ccdb-ranges.py -min 6608 -max 6783 -table /calibration/htcc/time -dump
 ```
 ---
 ### ADJUST CCDB TIME VALUES BY A CONSTANT
-10. If you'd like to adjust the time constants in ccdb by a simple addition of a constants you can use `changeTimeConstantsCCDB.sh` and `changeTimeConstantsCCDB.py`. You will need to change the `timeShift` value in the python script to whatever value you need. Currently the bash script is must be hardcoded for the run ranges in the script itself so you need to edit the arrays `MIN_RUNS` and `MAX_RUNS`. The bash script will call the python script itself and commit the changes to ccdb. To run these is fairly straight forward (after the appropriate changes have been made):
+🚨 New as of 15 July 2024 🚨
+10. If you'd like to adjust the time constants in CCDB by a simple addition of a constant, you can use `changeTimeConstantsCCDB.sh` and `changeTimeConstantsCCDB.py`. These scripts now support sector-specific time shifts and accept command-line arguments for the run range and sector-specific shifts.
 
-The bash and python scripts have been update to accept command line arguments.
+The bash and python scripts have been updated to accept command line arguments.
 
 **Example**
 ```bash
-./changeTimeConstantsCCDB.sh [timeShift] "[minRuns]" "[maxRuns]"
+./changeTimeConstantsCCDB.sh MIN_RUN=<minRun> MAX_RUN=<maxRun> SEC1_SHIFT=<shift> SEC2_SHIFT=<shift> SEC3_SHIFT=<shift> SEC4_SHIFT=<shift> SEC5_SHIFT=<shift> SEC6_SHIFT=<shift>
 ```
-Now you can specify the time shift (rather than hardcoded in the python script) and you can provide a list of the runs.
+Now you can specify the time shifts for each sector (rather than having them hardcoded in the python script) and provide a list of the runs. The default behavior is to assume that the time shifts are all 0.
+
 **Example**
 ```bash
-./changeTimeConstantsCCDB.sh -5.996 "6608 6633 6662" "6632 6661 6686"
+./changeTimeConstantsCCDB.sh MIN_RUN=17279 MAX_RUN=17279 SEC1_SHIFT=0.05576 SEC2_SHIFT=-0.04397 SEC3_SHIFT=-0.01265 SEC4_SHIFT=0.17876 SEC5_SHIFT=6.7847 SEC6_SHIFT=0.07842
 ```
+This will apply the specified time shifts to the corresponding sectors for the run range provided.
+#### Instructions
+Single Run:
+To run the updated script for a single run with sector-specific time shifts:
+```bash
+./changeTimeConstantsCCDB.sh MIN_RUN=17279 MAX_RUN=17279 SEC1_SHIFT=0.05576 SEC2_SHIFT=-0.04397 SEC3_SHIFT=-0.01265 SEC4_SHIFT=0.17876 SEC5_SHIFT=6.7847 SEC6_SHIFT=0.07842
+```
+Multiple Runs:
+For multiple runs, iterate over the run numbers and call the script for each run with the specific shifts from the CSV file:
+```python
+import pandas as pd
+import subprocess
+
+# Load the CSV file
+df = pd.read_csv('RGC_F22_4nsTimeShift.csv')
+
+# Group by run number
+grouped = df.groupby('run')
+
+# Path to your bash script
+bash_script_path = './changeTimeConstantsCCDB.sh'
+
+# Iterate through each group (run number)
+for run, group in grouped:
+    # Get the time shifts for each sector
+    sector_shifts = group.set_index('sector')['time shift'].to_dict()
+
+    # Construct the command line arguments
+    args = [
+        f"MIN_RUN={run}",
+        f"MAX_RUN={run}",
+        f"SEC1_SHIFT={sector_shifts.get(1, 0.0)}",
+        f"SEC2_SHIFT={sector_shifts.get(2, 0.0)}",
+        f"SEC3_SHIFT={sector_shifts.get(3, 0.0)}",
+        f"SEC4_SHIFT={sector_shifts.get(4, 0.0)}",
+        f"SEC5_SHIFT={sector_shifts.get(5, 0.0)}",
+        f"SEC6_SHIFT={sector_shifts.get(6, 0.0)}",
+    ]
+
+    # Run the bash script with the constructed arguments
+    command = [bash_script_path] + args
+    subprocess.run(command)
+```
+This Python script automates the process of applying sector-specific time shifts for each run based on the CSV file. Use this as an example for your own calibrations.
+🚨 New as of 15 July 2024 🚨
 ---
 ### ADJUST CCDB GAIN VALUES BY A CONSTANT
 11. If you'd like to adjust the gain constants in ccdb by a normalization factor for each sector, you can use changeGainConstantsCCDB.sh and changeGainConstantsCCDB.py. The bash and python scripts have been updated to accept command-line arguments for the normalization factors and run ranges.
