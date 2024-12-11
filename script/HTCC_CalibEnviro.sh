@@ -53,6 +53,9 @@ echo ""
 
 echo "SETTING ENVIRONMENT..."
 
+# Load the modules package initialization
+source /etc/profile.d/modules.sh
+
 # Add the CLAS12 CVMFS-based modulefiles to the MODULEPATH
 module use /cvmfs/oasis.opensciencegrid.org/jlab/hallb/clas12/sw/modulefiles
 
