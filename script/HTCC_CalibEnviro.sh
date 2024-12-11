@@ -56,6 +56,9 @@ echo "SETTING ENVIRONMENT..."
 # Load the modules package initialization
 source /etc/profile.d/modules.sh
 
+# Clear all previously loaded modules
+module purge
+
 # Add the CLAS12 CVMFS-based modulefiles to the MODULEPATH
 module use /cvmfs/oasis.opensciencegrid.org/jlab/hallb/clas12/sw/modulefiles
 
@@ -66,6 +69,9 @@ module avail
 # Load the default CLAS12 environment (which includes ROOT, coatjava, etc.)
 # Note: 'clas12/pro' no longer exists; now 'clas12' points to the production environment.
 module load clas12
+
+# Switch to a newer groovy version
+module switch groovy/4.0.3 groovy/4.0.20
 
 # List currently loaded modules for verification
 module list
