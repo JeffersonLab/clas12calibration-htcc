@@ -13,6 +13,7 @@
 - [Adjust CCDB Time Values by a Constant](#adjust-ccdb-time-values-by-a-constant)
 - [Adjust CCDB Gain Values by a Constant](#adjust-ccdb-gain-values-by-a-constant)
 - [Hardware Status Tables](#hardware-status-tables)
+- [Post Processing Visualization](#post-processing-visualization)
 
 ---
 
@@ -333,3 +334,56 @@ Here are some key resources related to the hardware status tables:
 As per the process, if all channels are good, no action is needed. But if there are components that should be excluded from the reconstruction, a new entry should be made in the hardware status tables where their status is set according to the convention described above.
 
 Please be aware that changes to hardware status tables can create "holes" in the acceptance, and hence, usually, this is done only if the behavior of the detector element is so erratic that it would be too difficult to track the efficiency. Therefore, careful consideration and analysis are required before making any changes to these tables.
+
+## Post Processing Visualization
+
+### PowerPoint Generation Script
+The Python script `htcc_calibration.py` generates PowerPoint presentations to visualize calibration results across multiple runs. It takes calibration outputs, processes them, and creates organized slides with comparisons and trends.
+
+**Required Arguments:**
+```bash
+python htcc_calibration.py \
+  --directories DIRECTORY [DIRECTORY ...] \  # List of directories containing run data
+  --dates DATE [DATE ...]               \    # List of dates to process (DD-Mon-YYYY format)
+  --output OUTPUT_DIR                   \    # Output directory for the presentation
+  --title PRESENTATION_TITLE            \    # Title for the presentation
+  --author AUTHOR_NAME                       # Author name for the presentation
+```
+
+**Optional Arguments:**
+- `--process-only`: Only process directories without creating slides
+- `--slides-only`: Only create slides without processing directories
+
+**Example Usage:**
+```bash
+python htcc_calibration.py \
+  --directories "/path/to/HTCC/RGK/8Jan2025/" \
+  --dates "08-Jan-2025" \
+  --output "/path/to/output/dir/" \
+  --title "HTCC Calibrations for RGK Fall 2023" \
+  --author "Your Name"
+```
+
+**Outputs:**
+1. Processes calibration data and generates visualizations
+2. Creates a PowerPoint presentation (`HTCC_Calibrations_[DATE].pptx`) containing:
+   - Title slide with author and date
+   - Overview slides for each run
+   - Gain and timing comparison plots
+   - Combined visualization slides
+
+**Note:** The script automatically handles image scaling and slide layout to ensure professional-looking presentations. The output filename includes the processing date for easy identification.
+
+#### Script Prerequisites:
+- Python 3.x
+- Required Python packages:
+  - python-pptx
+  - pandas
+  - matplotlib
+  - Pillow
+  - numpy
+
+You can install these packages using pip:
+```bash
+pip install python-pptx pandas matplotlib Pillow numpy
+```
