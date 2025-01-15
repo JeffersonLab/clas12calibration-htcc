@@ -62,8 +62,7 @@ chmod u+x *.sh
 9. `changeTimeConstantsCCDB.sh`: bash script that changes time constants in ccdb based on some values
 10. `changeTimeConstantsCCDB.py`: python scripts that includes the time shift values and produces new time constants based on said value
 11. `OneScriptToRunThemAll.sh`: This new script simplifies the calibration process by executing multiple steps sequentially. It runs the calibration, generates analysis plots for each individual run, and then plots a trend over all runs for gain and time.
-12. :rotating_light: **New as of 3 July 2024** :rotating_light:
-**`changeGainConstantsCCDB.sh`** and `changeGainConstantsCCDB.py`: bash and python scripts that changes gain constants in ccdb based on normalization factors for each sector.
+12. `changeGainConstantsCCDB.sh` and `changeGainConstantsCCDB.py`: bash and python scripts that changes gain constants in ccdb based on normalization factors for each sector.
 
 ##### Outputs
 1. `npeAllC[RUN NUM].png`: plot over all 48 channels showing the gain
@@ -98,8 +97,6 @@ git clone https://github.com/JeffersonLab/clas12calibration-htcc.git
 ```
 2. Check that script has the following files: `htccCalib.sh`, `HTCC_CalibEnviro.sh`, `htccCalib.groovy`, `calibrateMultipleRuns.sh`, and the newly added `OneScriptToRunThemAll.sh`.
 
-🚨 New as of 2 Dec 2023 🚨
-
 3. To run the new script `OneScriptToRunThemAll.sh`, which includes all steps up to and including the generation of plots comparing gain and time constants (Section Python Script to Generate Plots Comparing Gain and Time Constants), use the following command:
   ```
   ./OneScriptToRunThemAll.sh FILE_PATH=[Your File Path Here]
@@ -108,7 +105,6 @@ git clone https://github.com/JeffersonLab/clas12calibration-htcc.git
   ```
   ./OneScriptToRunThemAll.sh FILE_PATH=/volatile/clas12/rg-c/production/calib/10.0.2_TBT_11_30_23/calib/train/htcc/
   ```
-  🚨 New as of 2 Dec 2023 🚨
   
 4. Run `htccCalib.sh` for a single run or `calibrateMultipleRuns.sh` for multiple runs.
   
@@ -236,7 +232,6 @@ ccdb-ranges.py -min 6608 -max 6783 -table /calibration/htcc/time -dump
 ```
 ---
 ### ADJUST CCDB TIME VALUES BY A CONSTANT
-🚨 New as of 15 July 2024 🚨
 
 10. If you'd like to adjust the time constants in CCDB by a simple addition of a constant, you can use `changeTimeConstantsCCDB.sh` and `changeTimeConstantsCCDB.py`. These scripts now support sector-specific time shifts and accept command-line arguments for the run range and sector-specific shifts.
 
@@ -296,13 +291,10 @@ for run, group in grouped:
     subprocess.run(command)
 ```
 This Python script automates the process of applying sector-specific time shifts for each run based on the CSV file. Use this as an example for your own calibrations.
-🚨 New as of 15 July 2024 🚨
 
 ---
 ### ADJUST CCDB GAIN VALUES BY A CONSTANT
 11. If you'd like to adjust the gain constants in ccdb by a normalization factor for each sector, you can use changeGainConstantsCCDB.sh and changeGainConstantsCCDB.py. The bash and python scripts have been updated to accept command-line arguments for the normalization factors and run ranges.
-
-🚨 New as of 3 July 2024 🚨
 
 The bash and python scripts have been update to accept command line arguments.
 
@@ -317,7 +309,6 @@ Now you can specify the normalization factors (rather than hardcoded in the pyth
 ```
 The default behavior is to assume that the normalization factors are all 1.
 
-🚨 New as of 3 July 2024 🚨
 ---
 ## Hardware Status Tables
 
@@ -336,6 +327,7 @@ As per the process, if all channels are good, no action is needed. But if there 
 Please be aware that changes to hardware status tables can create "holes" in the acceptance, and hence, usually, this is done only if the behavior of the detector element is so erratic that it would be too difficult to track the efficiency. Therefore, careful consideration and analysis are required before making any changes to these tables.
 
 ## Post Processing Visualization
+:rotating_light: **New as of 15 Jan 2025** :rotating_light:
 
 ### PowerPoint Generation Script
 The Python script `htcc_calibration.py` generates PowerPoint presentations to visualize calibration results across multiple runs. It takes calibration outputs, processes them, and creates organized slides with comparisons and trends.
@@ -387,3 +379,5 @@ You can install these packages using pip:
 ```bash
 pip install python-pptx pandas matplotlib Pillow numpy
 ```
+
+:rotating_light: **New as of 15 Jan 2025** :rotating_light:
