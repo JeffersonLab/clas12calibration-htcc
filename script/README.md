@@ -381,3 +381,17 @@ pip install python-pptx pandas matplotlib Pillow numpy
 ```
 
 :rotating_light: **New as of 15 Jan 2025** :rotating_light:
+
+:rotating_light: **New as of 19 Feb 2025** :rotating_light:
+
+### Jupyter Lab Notebook: HTCC Trends Over Time `TrendsOverTime_CalibrationAnalysis.ipynb`
+This new Jupyter Lab notebook provides an interactive environment for visualizing HTCC calibration data across multiple runs. The notebook is organized into clear sections, including:
+- **Introduction:** Outlines the data requirements and the purpose of creating "mini timelines" for selected calibration runs.
+- **Environment Setup:** Shows how to import necessary libraries and configure the environment.
+- **Data Processing:** Demonstrates how to inspect directories, load calibration data, view dataframe structures, and apply custom filters.
+- **Example Plots & Analysis:** Provides multiple examples of generating scatter plots and customizing visualizations to highlight trends in gain and timing.
+- **Customization & Advanced Options:** Explains additional customization options such as adjusting axis ranges, adding reference lines, and integrating advanced analysis.
+
+This notebook is designed to be run locally, giving you a quick and accessible way to explore calibration data and support decision-making for further calibrations.
+
+:rotating_light: **New as of 19 Feb 2025** :rotating_light:
