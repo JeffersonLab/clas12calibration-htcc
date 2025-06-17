@@ -1,4 +1,6 @@
 # HTCC Calibration Tools
+This repo is archival, read only, moved tohttps://code.jlab.org/hallb/clas12/calibration/calcode
+
 Package to obtain the HTCC gain and timing calibration parameters for a given run.
 
 ## Script
